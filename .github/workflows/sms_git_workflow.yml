@@ -13,7 +13,7 @@ on:
 
 env:
   JAVA_VERSION: "${{ secrets.SMS_JAVA_VERSION }}"
-   APPLICATION_NAME: "sms-infrastructur
+  APPLICATION_NAME: "sms-infrastructur
 
 defaults: 
   run:
