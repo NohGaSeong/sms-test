@@ -48,11 +48,11 @@ jobs:
 
   other:
     steps:
-    - name: Create application.yml
-      uses: ./github/workflows/other-create-application-yml.yml
-      with:
-        application_name: sms-infrastructure
-        job: check-and-create-application-yml
+      - name: Create application.yml
+        uses: ./github/workflows/other-create-application-yml.yml
+        with:
+          application_name: sms-infrastructure
+          job: check-and-create-application-yml
         
 
   package:
