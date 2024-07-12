@@ -13,7 +13,6 @@ on:
 
 env:
   JAVA_VERSION: "${{ secrets.SMS_JAVA_VERSION }}"
-  APPLICATION_NAME: sms-infrastructure
 
 defaults: 
   run:
@@ -38,7 +37,7 @@ jobs:
       APPLICATION_NAME: sms-infrastructure
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/other-create-application-yml.yml@main
     with:
-      application_name: $APPLICATION_NAME
+      application_name: ${{ env.APPLICATION_NAME }}
 
 
   package:
