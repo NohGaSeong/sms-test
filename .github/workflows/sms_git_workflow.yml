@@ -35,15 +35,10 @@ jobs:
 
 
   other:
-    steps:
-    - name: Create application yml
-      uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/other-create-application-yml.yml@main
-      with:
-        application_name: $APPLICATION_NAME
+    uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/other-create-application-yml.yml@main
+    with:
+      application_name: $APPLICATION_NAME
 
-
-    - name: test
-      run: echo $APPLICATION_NAME
 
   package:
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
