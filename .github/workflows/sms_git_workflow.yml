@@ -22,12 +22,9 @@ defaults:
 jobs:
   test:
     if: github.ref == 'refs/heads/feature/*' || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    steps:
-    - name: test
-      uses: ./.github/workflows/gradle-test.yml
-      with:
-        job: test
+    uses: ./.github/workflows/gradle-test.yml
+    with:
+      job: test
 
   # build:
   #   if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
@@ -39,7 +36,6 @@ jobs:
   #       job: build
 
   other:
-    runs-on: ubuntu-latest
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/other-create-application-yml.yml@main
     with:
       application_name: sms-infrastructure
@@ -47,14 +43,12 @@ jobs:
         
 
   package:
-    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/docker-packaging.yml@main
     with:
       job: package
 
   deploy:
-    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml@main
     with:
