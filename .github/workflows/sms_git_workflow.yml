@@ -22,11 +22,9 @@ defaults:
 jobs:
   setup-java:
     runs-on: ubuntu-latest
-    steps:
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: $JAVA_VERSION
+    uses: actions/setup-java@v3
+    with:
+      java-version: $JAVA_VERSION
 
   test:
     if: startsWith(github.ref, 'refs/heads/feature/') || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
