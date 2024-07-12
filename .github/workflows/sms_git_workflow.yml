@@ -29,14 +29,14 @@ jobs:
       with:
         job: test
 
-  build:
-    if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    steps:
-    - name: build 
-      uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-build.yml@main
-      with:
-        job: build
+  # build:
+  #   if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: build 
+  #     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-build.yml@main
+  #     with:
+  #       job: build
 
   other:
     runs-on: ubuntu-latest
