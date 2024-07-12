@@ -23,16 +23,16 @@ jobs:
   test:
    if: github.ref == 'refs/heads/feature/*' || github.ref == 'refs/heads/develop', || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
-    uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-test.yml@main
-    with:
-      job: test
+    - uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-test.yml@main
+      with:
+        job: test
           
   build:
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
-    uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-build.yml@main
-    with:
-      job: build
+    - uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-build.yml@main
+      with:
+        job: build
 
   other:
     runs-on: ubuntu-latest
