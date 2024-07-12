@@ -38,36 +38,28 @@ jobs:
   build:
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
-    steps:
-      - name: Build
-        uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-build.yml@main
-        with:
-          job: build
+    uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-build.yml@main
+    with:
+      job: build
 
   other:
     runs-on: ubuntu-latest
-    steps:
-      - name: Create application.yml
-        uses: ./github/workflows/other-create-application-yml.yml
-        with:
-          application_name: sms-infrastructure
-          job: check-and-create-application-yml
+    uses: ./github/workflows/other-create-application-yml.yml
+    with:
+      application_name: sms-infrastructure
+      job: check-and-create-application-yml
         
 
   package:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
-    steps:
-      - name: packaing
-        uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/docker-packaging.yml@main
-        with:
-          job: package
+    uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/docker-packaging.yml@main
+    with:
+      job: package
 
   deploy:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
-    steps:
-      - name: deployment
-        uses: ${{ github.ref == 'refs/heads/develop' && 'GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml@main' || 'GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml@main' }}
-        with:
-          job: deploy
+    uses: ${{ github.ref == 'refs/heads/develop' && 'GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml@main' || 'GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml@main' }}
+    with:
+      job: deploy
