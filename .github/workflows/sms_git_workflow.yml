@@ -38,6 +38,8 @@ jobs:
 
   other:
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/other-create-application-yml.yml@main
+    with:
+      application_name: ${{ env.APPLICATION_NAME }}
         
   package:
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
