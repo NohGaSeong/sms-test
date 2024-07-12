@@ -44,7 +44,7 @@ jobs:
 
   other:
     runs-on: ubuntu-latest
-    uses: GSM-MSG/sugar-cane-pipeline/github/workflows/other-create-application-yml.yml@main
+    uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/other-create-application-yml.yml@main
     with:
       application_name: sms-infrastructure
       job: check-and-create-application-yml
