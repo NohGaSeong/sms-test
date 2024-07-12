@@ -33,6 +33,7 @@ jobs:
   #     with:
   #       job: build
 
+
   other:
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/other-create-application-yml.yml@main
     with:
