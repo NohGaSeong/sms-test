@@ -1,0 +1,74 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - 'feature/*'
+  pull_request:
+    branches:
+      - master
+      - develop
+
+env:
+  JAVA_VERSION: "${{ secrets.SMS_JAVA_VERSION }}"
+
+defaults: 
+  run:
+    shell: bash
+
+
+jobs:
+  setup-java:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: $JAVA_VERSION
+
+  test:
+    if: startsWith(github.ref, 'refs/heads/feature/') || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-test.yml
+        with:
+          job: test
+          
+  build:
+    if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-build.yml
+        with:
+          job: build
+
+  other:
+    steps:
+    - name: Create application.yml
+      uses: ./github/workflows/other-create-application-yml.yml
+      with:
+        application_name: sms-infrastructure
+        job: check-and-create-application-yml
+        
+
+  package:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
+    steps:
+      - name: packaing
+        uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/docker-packaging.yml
+        with:
+          job: package
+
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
+    steps:
+      - name: deployment
+        uses: ${{ github.ref == 'refs/heads/develop' && 'GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml' || 'GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml' }}
+        with:
+          job: deploy
