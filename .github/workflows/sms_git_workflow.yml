@@ -35,10 +35,9 @@ jobs:
   other:
     env:
       APPLICATION_NAME: sms-infrastructure
-    steps:
-      uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/other-create-application-yml.yml@main
-      with:
-        application_name: ${{ env.APPLICATION_NAME }}
+    uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/other-create-application-yml.yml@main
+    with:
+      application_name: ${{ env.APPLICATION_NAME }}
 
 
   package:
