@@ -37,6 +37,8 @@ jobs:
 
   other:
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/other-create-application-yml.yml@main
+    inputs:
+      application_name: $APPLICATION_NAME
 
         
   package:
