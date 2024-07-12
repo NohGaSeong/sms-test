@@ -11,15 +11,15 @@ on:
       - master
       - develop
 
-env:
-  JAVA_VERSION: "${{ secrets.SMS_JAVA_VERSION }}"
-  APPLICATION_NAME: "sms-infrastructur"
 
 defaults: 
   run:
     shell: bash
 
 jobs:
+  env:
+    JAVA_VERSION: "${{ secrets.SMS_JAVA_VERSION }}"
+    APPLICATION_NAME: "sms-infrastructur"
   test:
     if: github.ref == 'refs/heads/feature/*' || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-test.yml@main
@@ -37,7 +37,7 @@ jobs:
   other:
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/other-create-application-yml.yml@main
     with:
-      application_name: $APPLICATION_NAME
+      application_name: ${{ env.$APPLICATION_NAME }}
       
   package:
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
