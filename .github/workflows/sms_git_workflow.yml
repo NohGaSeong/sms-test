@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test
-        uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-test.yml
+        uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-test.yml@main
         with:
           job: test
           
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build
-        uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-build.yml
+        uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-build.yml@main
         with:
           job: build
 
@@ -60,7 +60,7 @@ jobs:
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
     steps:
       - name: packaing
-        uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/docker-packaging.yml
+        uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/docker-packaging.yml@main
         with:
           job: package
 
@@ -69,6 +69,6 @@ jobs:
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
     steps:
       - name: deployment
-        uses: ${{ github.ref == 'refs/heads/develop' && 'GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml' || 'GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml' }}
+        uses: ${{ github.ref == 'refs/heads/develop' && 'GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml@main' || 'GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml@main' }}
         with:
           job: deploy
