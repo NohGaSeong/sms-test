@@ -35,9 +35,8 @@ jobs:
   #       job: build
 
   other:
-    runs-on: ubuntu-latest
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/other-create-application-yml.yml@main
-    
+
         
 
   package:
