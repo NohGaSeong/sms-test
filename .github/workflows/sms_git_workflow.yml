@@ -38,18 +38,13 @@ jobs:
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/other-create-application-yml.yml@main
     with:
       application_name: sms-infrastructure
-      job: check-and-create-application-yml
         
 
   package:
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/docker-packaging.yml@main
-    with:
-      job: package
+
 
   deploy:
     if: github.ref == 'refs/heads/master'
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml@main
-    with:
-      job: deploy
-    
