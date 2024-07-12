@@ -21,11 +21,15 @@ defaults:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/feature/*' || github.ref == 'refs/heads/develop', || github.ref == 'refs/heads/master'
-    - uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/gradle-test.yml@main
+    runs-on: ubuntu-latest
+    steps:
+    - name: test
+      uses: ./.github/workflows/gradle-test.yml
       with:
         job: test
+
+
           
   build:
     runs-on: ubuntu-latest
