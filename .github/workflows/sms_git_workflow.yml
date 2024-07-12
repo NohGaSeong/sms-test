@@ -19,7 +19,6 @@ defaults:
   run:
     shell: bash
 
-
 jobs:
   test:
     if: github.ref == 'refs/heads/feature/*' || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
