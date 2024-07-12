@@ -38,7 +38,6 @@ jobs:
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/other-create-application-yml.yml@main
 
         
-
   package:
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
     uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/docker-packaging.yml@main
