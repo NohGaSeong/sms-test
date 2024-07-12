@@ -59,7 +59,8 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
-    uses: ${{ github.ref == 'refs/heads/develop' && 'GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml@main' || 'GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml@main' }}
+    if: github.ref == 'refs/heads/master'
+    uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy-ssh-to-ec2.yml@main
     with:
       job: deploy
+    
